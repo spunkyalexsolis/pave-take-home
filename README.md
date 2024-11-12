@@ -1,6 +1,6 @@
 # Sample Project
 
-This is a sample project that that parses a defined CSV and does a simple visualization that is meant as a propotype.
+This is a sample project that that parses a defined CSV and does a simple visualization that is meant as a prototype.
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 This project uses the following tech stack:
@@ -10,7 +10,7 @@ This project uses the following tech stack:
 - [csv-loader](https://www.npmjs.com/package/csv-loader)
 - [papaparse](https://www.npmjs.com/package/papaparse)
 - [shadcn/ui](https://ui.shadcn.com/)
- - Charts - Under the hood [Recharts](https://ui.shadcn.com/docs/components/chart)
+  - Charts : under the hood [Recharts](https://ui.shadcn.com/docs/components/chart)
 
 ## Adding Data
 
@@ -40,6 +40,8 @@ pnpm dev
 # or
 bun dev
 ```
+
+**Tip:** If it's your first time using Next.js `npm run dev` is the hot reload option locally (not `npm start` which you would use for a React only project) . `npm run build` and `npm run start` if you want do something with regards to bundling.  
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
