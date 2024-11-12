@@ -6,6 +6,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ["#1984c5", "#22a7f0", "#63bff0", "#a7d5ed", "#e2e2e2", "#e1a692", "#de6e56", "#e14b31", "#c23728"] */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -27,11 +29,23 @@ body {
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
+
+    /* --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --chart-5: 27 87% 67%; */
+
+    --chart-1: #1984c5;
+    --chart-2: #22a7f0;
+    --chart-3: #63bff0;
+    --chart-4: #a7d5ed;
+    --chart-5: #e2e2e2;
+    --chart-6: #e1a692;
+    --chart-7: #de6e56;
+    --chart-8: #e14b31;
+    --chart-9: #c23728;
+ 
     --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -62,11 +76,13 @@ body {
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
+
+    /* --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-5: 340 75% 55%; */
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -79,25 +95,37 @@ body {
 }
 
 /* Charts */
-@layer base {
+/* @layer base {
   :root {
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    --chart-1: 173 58% 39%;
+    --chart-2: 12 76% 61%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
- 
+
   .dark {
-    --chart-1: 220 70% 50%;
+    /* --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
-}
 
-/* Sidebar */
+    --chart-1: 220 70% 50%;
+    --chart-5: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-2: 340 75% 55%;
+  }
+} */
+
+/* Sidebar 
 @layer base {
   :root {
     --sidebar-background: 0 0% 98%;
@@ -121,6 +149,7 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+*/
 
 @layer base {
   * {

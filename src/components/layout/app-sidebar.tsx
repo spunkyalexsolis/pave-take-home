@@ -22,12 +22,7 @@ const items = [
     title: "Dashboard",
     url: "/dashboard",
     icon: ChartArea,
-  },
-  {
-    title: "Data",
-    url: "/data",
-    icon: FileSpreadsheet,
-  }
+  }  
 ]
 
 export function AppSidebar() {

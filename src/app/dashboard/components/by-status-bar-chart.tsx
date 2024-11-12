@@ -1,57 +1,80 @@
 'use client'
-import { Bar, BarChart } from "recharts"
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from "recharts"
  
-import { ChartConfig, ChartContainer } from "@/components/ui/chart"
+import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { useData } from "@/hooks/use-data"
-import { groupByDay } from "@/utils/data-utils"
- 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+import { aggregateGroupData, groupByDay, groupByMonthAndYear } from "@/utils/data-utils"
  
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "#2563eb",
+  '0D_CORRECT': {
+    label: "0D_CORRECT",
+    color: "var(--chart-1)"
   },
-  mobile: {
-    label: "Mobile",
-    color: "#60a5fa",
+  '1D_CORRECT': {
+    label: "1D_CORRECT",
+    color: "var(--chart-2)",
+  },
+  '2D_CORRECT': {
+    label: "2D_CORRECT",
+    color: "var(--chart-3)",
+  },
+  'INCORRECT': {
+    label: "INCORRECT",
+    color: "var(--chart-9)",
+  },
+  'NO_PREDICTION': {
+    label: "NO_PREDICTION",
+    color: "var(--chart-6)",
+  },
+  'TRUTH_NOT_AVAILABLE': {
+    label: "TRUTH_NOT_AVAILABLE",
+    color: "var(--chart-5)",
   },
 } satisfies ChartConfig
  
 export function ByStatusBarChart() {
   const { data } = useData();
 
-  const groupedByDay = groupByDay(data, 'eventDate');
+  // const groupedByDay = groupByDay(data, 'eventDate');
+  const groupedByMonthAndYear = groupByMonthAndYear(data, 'eventDate');
+  const chartData = aggregateGroupData(groupedByMonthAndYear,'count', 'eventStatus', 'nextAmount');
 
   return (
-    <Card className="w-[400px]">
+    <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle>Bar Chart - Stacked</CardTitle>
+        <CardDescription>
+          Showing total visitors for the last 6 months
+        </CardDescription>
       </CardHeader>
-
-      <CardContent>
-
-        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+      <CardContent>  
+          <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-[500px]">
           <BarChart accessibilityLayer data={chartData}>
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="key"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value}
+            />
+            
+            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+            <ChartLegend content={<ChartLegendContent />} />           
+
+            {Object.keys(chartConfig).map((barKey: string) => 
+              <Bar
+                dataKey={barKey}
+                stackId="a"
+                key={barKey}
+                fill={`var(--color-${barKey})`}
+                radius={[4, 4, 0, 0]}
+              />             
+            )} 
           </BarChart>
         </ChartContainer>
-        
-      </CardContent>
-      
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>   
+      </CardContent>      
+    </Card>
   )
 }
