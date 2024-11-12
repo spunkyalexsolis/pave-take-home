@@ -3,6 +3,8 @@ import { Bar, BarChart } from "recharts"
  
 import { ChartConfig, ChartContainer } from "@/components/ui/chart"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { useData } from "@/hooks/use-data"
+import { groupByDay } from "@/utils/data-utils"
  
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
@@ -24,7 +26,11 @@ const chartConfig = {
   },
 } satisfies ChartConfig
  
-export function SampleChart() {
+export function ByStatusBarChart() {
+  const { data } = useData();
+
+  const groupedByDay = groupByDay(data, 'eventDate');
+
   return (
     <Card className="w-[400px]">
       <CardHeader>
