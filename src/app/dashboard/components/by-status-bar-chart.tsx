@@ -32,20 +32,26 @@ const chartConfig = {
     color: "var(--chart-5)",
   },
 } satisfies ChartConfig
- 
-export function ByStatusBarChart() {
-  const { data } = useData();
 
-  // const groupedByDay = groupByDay(data, 'eventDate');
+// TODO: This typing is not designed and setup yet to be fully shareable chart component  
+export type ByStatusBarChartProps = {
+  chartTitle: string;
+  chartDescription: string;
+  type: 'count' | 'total';
+}
+ 
+export function ByStatusBarChart({ chartTitle, chartDescription, type}: ByStatusBarChartProps) {
+  const { data } = useData();
+  
   const groupedByMonthAndYear = groupByMonthAndYear(data, 'eventDate');
-  const chartData = aggregateGroupData(groupedByMonthAndYear,'count', 'eventStatus', 'nextAmount');
+  const chartData = aggregateGroupData(groupedByMonthAndYear,type, 'eventStatus', 'nextAmount');
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart - Stacked</CardTitle>
+        <CardTitle>{chartTitle}</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          {chartDescription}
         </CardDescription>
       </CardHeader>
       <CardContent>  
